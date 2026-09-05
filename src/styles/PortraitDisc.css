@@ -1,0 +1,29 @@
+.portrait-disc {
+  position: absolute;
+  top: 0%;
+  right: 10%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: clamp(220px, 26vw, 480px);
+  height: clamp(220px, 26vw, 480px);
+  pointer-events: none;
+}
+
+.portrait-disc__img {
+  width: 135%;
+  height: 135%;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.27;
+  mix-blend-mode: screen;
+  filter: grayscale(0.2) contrast(1.1);
+}
+
+@media (max-width: 900px) {
+  .portrait-disc {
+    width: clamp(160px, 40vw, 260px);
+    height: clamp(160px, 40vw, 260px);
+    right: 2vw;
+    opacity: 0.6;
+  }
+}

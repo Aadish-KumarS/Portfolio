@@ -1,0 +1,31 @@
+.tilt-panel {
+  position: relative;
+  transform-style: preserve-3d;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.tilt-panel__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.tilt-panel__content {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(20px);
+}
+
+@media (hover: none) {
+  .tilt-panel {
+    transform: none !important;
+  }
+  .tilt-panel__glow {
+    display: none;
+  }
+}

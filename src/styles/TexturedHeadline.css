@@ -1,0 +1,33 @@
+.textured-headline {
+  margin: 0;
+  filter: var(--noise-filter);
+}
+
+.textured-headline__row {
+  display: block;
+}
+
+.textured-headline__char {
+  display: inline-block;
+  position: relative;
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      var(--red) 0px,
+      var(--red) 2px,
+      var(--red-dim) 3px,
+      var(--red) 5px
+    );
+  background-size: 180% 180%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(239, 65, 54, 0.35);
+}
+
+.textured-headline--outline .textured-headline__char {
+  background-image: none;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--red);
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --black: #0a0a0a;
+  --panel: #151313;
+  --red: #ef4136;
+  --red-dim: #7a221c;
+  --off-white: #f2ede6;
+  --line: rgba(242, 237, 230, 0.14);
+
+  --display: 'Anton', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
