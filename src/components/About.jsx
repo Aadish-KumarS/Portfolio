@@ -1,6 +1,6 @@
 import { useRef,useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import portraitImg from '../assets/portrait2.png';
+import portraitImg from '../assets/portrait2.jpg';
 import '../styles/About.css';
 
 
