@@ -59,10 +59,7 @@ export default function Hero() {
           custom={0.2}
           variants={fadeUp}
         >
-          BCA graduate, now studying MSc Data Science &amp; Analytics. I build
-          things to understand them — MCP servers from scratch, AI content
-          pipelines tested like experiments, full-stack apps shipped end to
-          end. This site is one of them.
+          Data Science and AI enthusiast building intelligent, data-driven products with Python, SQL, FastAPI, React, Node.js, and MongoDB. Experienced in integrating LLMs including Gemini, Mistral, and OpenChat, with work spanning an intelligent web-applications, analytics-focused solutions, and scalable full-stack web applications. Currently expanding into machine learning, data engineering, visualization, and AI product engineering.
         </motion.p>
       <PortraitDisc src={portraitImg} scrollYProgress={scrollYProgress} />
 
@@ -104,18 +101,18 @@ export default function Hero() {
         <motion.div className="hero__cards" style={{ y: yPanels }}>
           <TiltPanel className="hero__card">
             <span className="hero__card-label">01</span>
-            <h3>Backend &amp; Infra</h3>
-            <p>MCP servers, filesystem tooling, protocol-level learning by building from zero.</p>
+            <h3>Data &amp; Analytics</h3>
+            <p>Python, SQL, statistics, visualization, and data-driven problem-solving for practical products.</p>
           </TiltPanel>
           <TiltPanel className="hero__card">
             <span className="hero__card-label">02</span>
-            <h3>AI Pipelines</h3>
-            <p>LLM scripting + GenAI visuals, run as controlled experiments across niches.</p>
+            <h3>AI Integration</h3>
+            <p>LLM-powered applications using Gemini, Mistral, and OpenChat to create useful intelligent experiences.</p>
           </TiltPanel>
           <TiltPanel className="hero__card">
             <span className="hero__card-label">03</span>
-            <h3>Full-Stack Apps</h3>
-            <p>Node.js, FastAPI, React — multi-service systems shipped as real products.</p>
+            <h3>Full-Stack Products</h3>
+            <p>Scalable web applications with React, Node.js, FastAPI, and MongoDB - from interface to deployment.</p>
           </TiltPanel>
         </motion.div>
 
