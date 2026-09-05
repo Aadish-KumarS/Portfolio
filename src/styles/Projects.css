@@ -9,7 +9,7 @@
   position: sticky;
   top: 0;
   min-height: 100vh;
-  padding: 7vw 0 4vw 5vw;
+  padding: 5vw 0 4vw 5vw;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -22,10 +22,11 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--red);
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   position: relative;
   z-index: 2;
 }
+
 
 .projects__heading {
   font-family: var(--display);
@@ -33,23 +34,17 @@
   font-size: clamp(2.4rem, 6.5vw, 5.5rem);
   line-height: 0.9;
   color: var(--off-white);
-  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
   position: relative;
   z-index: 2;
-}
-
-.projects__track-wrap {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  overflow: hidden;
 }
 
 .projects__track {
   display: flex;
+  flex-wrap: nowrap;
   gap: clamp(1.5rem, 3vw, 2.5rem);
   height: 100%;
-  align-items: center;
+  align-items: stretch;
   width: max-content;
 }
 
@@ -57,16 +52,11 @@
   background: var(--panel);
   border: 1px solid var(--line);
   width: clamp(300px, 32vw, 460px);
-  padding: clamp(1.75rem, 2.5vw, 2.5rem);
+  height: clamp(560px, 68vh, 700px);
+  padding: clamp(1.5rem, 2vw, 2rem);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-}
-
-.projects__card-number {
-  font-family: var(--display);
-  font-size: 1rem;
-  color: var(--red);
+  gap: 0.6rem;
 }
 
 .projects__card-tag {
@@ -90,6 +80,10 @@
   line-height: 1.6;
   color: rgba(242, 237, 230, 0.75);
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .projects__card-stack {
@@ -124,13 +118,83 @@
   text-decoration: underline;
 }
 
-.projects__scroll-hint {
+.projects__card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--red-dim), var(--black));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.projects__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projects__card-image-placeholder {
+  font-family: var(--display);
+  font-size: 3rem;
+  color: rgba(242, 237, 230, 0.2);
+}
+
+.projects__progress {
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   padding-top: 1.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  color: rgba(242, 237, 230, 0.4);
+  flex-shrink: 0;
+}
+
+.projects__track-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  width: 100%; 
+}
+
+.projects__progress-count {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  color: var(--off-white);
+  white-space: nowrap;
+}
+
+.projects__progress-track {
+  flex: 1;
+  height: 2px;
+  background: var(--line);
+  max-width: 240px;
+}
+
+.projects__progress-fill {
+  height: 100%;
+  background: var(--red);
+}
+
+.projects__track .projects__card .tilt-panel__content {
+  padding: clamp(1.5rem, 2vw, 2rem) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.6rem;
+  height: 100%;
+}
+
+.projects__track .projects__card.tilt-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  width: clamp(300px, 32vw, 460px);
+  height: clamp(380px, 68vh, 320px);
+  flex-shrink: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 720px) {

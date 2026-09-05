@@ -1,37 +1,52 @@
-import { useRef } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Grain from './Grain';
 import '../styles/Projects.css';
+import TiltPanel from './TiltPanel';
 
 // Edit this data — swap in real descriptions/links as projects finalize.
 const PROJECTS = [
   {
     number: '01',
-    title: 'MCP Server',
-    tag: 'Backend / Protocol',
+    title: 'AI Career Intelligence Platform',
+    tag: 'AI / Data Product',
     description:
-      'A Model Context Protocol server built from scratch as a learning exercise — filesystem helper tools, written line by line to understand the protocol, not just use it.',
-    stack: ['Python', 'MCP SDK', 'Docker'],
-    link: '#',
+      'An AI-powered platform for career exploration, skill-gap analysis, personalised learning roadmaps, and exam preparation.',
+    stack: ['React', 'Node.js', 'FastAPI', 'MongoDB', 'LLM Integration'],
+    link: 'https://github.com/Aadish-KumarS/AI-powered-Career-Intelligent-Webapp',
+    image: null,
   },
   {
     number: '02',
-    title: 'AI Shorts Experiment',
-    tag: 'AI Pipeline / Content',
+    title: 'AI-Powered Web Applications',
+    tag: 'AI Integration / Full-Stack',
     description:
-      'A controlled experiment testing whether AI-generated short-form video can find a niche on Instagram and YouTube Shorts — LLM scripts, GenAI visuals, five niches, one fixed pipeline.',
-    stack: ['LLM Scripting', 'Kling AI', 'CapCut'],
+      'Full-stack applications that integrate modern LLMs such as Gemini, Mistral, and OpenChat to deliver practical, intelligent user experiences.',
+    stack: ['Python', 'FastAPI', 'React', 'Gemini', 'Mistral'],
     link: '#',
+    image: null,
   },
   {
     number: '03',
-    title: 'AI Career Intelligence Web App',
-    tag: 'Full-Stack / Final Year',
+    title: 'Celebrare Frontend Internship',
+    tag: 'Frontend / UI Engineering',
     description:
-      'A multi-service career intelligence platform for my BCA final year — Node.js auth, FastAPI services, and a React frontend working together end to end.',
-    stack: ['Node.js', 'FastAPI', 'React'],
-    link: 'https://github.com/Aadish-KumarS/AI-powered-Career-Intelligent-Webapp',
+      'Transformed Figma designs into responsive, production-ready user interfaces, with a strong focus on clean implementation, usability, and attention to detail.',
+    stack: ['React', 'JavaScript', 'Figma', 'Responsive Design'],
+    link: '#',
+    image: null,
   },
+  {
+    number: '04',
+    title: 'MCP Server',
+    tag: 'In Progress / AI Infrastructure',
+    description:
+      'Currently building a Model Context Protocol server to deepen my understanding of AI integrations, tool calling, and backend systems.',
+    stack: ['Python', 'MCP SDK', 'Docker', 'REST APIs'],
+    link: '#',
+    image: null,
+  },
+  
 ];
 
 const fadeUp = {
@@ -45,19 +60,34 @@ const fadeUp = {
 
 export default function Projects() {
   const pinRef = useRef(null);
+  const trackWrapRef = useRef(null);
+  const trackRef = useRef(null);
+  const [maxScroll, setMaxScroll] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: pinRef,
     offset: ['start start', 'end end'],
   });
 
-  // Vertical scroll through the pinned section drives horizontal
-  // translation of the track — this is what makes it a "scroll gallery"
-  // without hijacking the scrollbar or requiring manual drag.
-  const trackX = useTransform(scrollYProgress, [0, 1], ['2%', '-72%']);
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (trackRef.current && trackWrapRef.current) {
+        const overflow = trackRef.current.scrollWidth - trackWrapRef.current.clientWidth;
+        console.log('scrollWidth:', trackRef.current.scrollWidth, 'clientWidth:', trackWrapRef.current.clientWidth, 'overflow:', overflow);
+        setMaxScroll(Math.max(overflow, 0));
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  const trackX = useTransform(scrollYProgress, [0, 1], [0, -maxScroll]);
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const activeIndex = useTransform(scrollYProgress, [0, 1], [0, PROJECTS.length - 1]);
 
   return (
-    <section id="projects" className="projects" ref={pinRef}>
+    <section id="projects" className="projects" ref={pinRef} >
       <div className="projects__pin">
         <Grain />
 
@@ -81,15 +111,20 @@ export default function Projects() {
           variants={fadeUp}
         >
           THINGS I'VE
-          <br />
           ACTUALLY BUILT
         </motion.h2>
 
-        <div className="projects__track-wrap">
-          <motion.div className="projects__track" style={{ x: trackX }}>
+        <div className="projects__track-wrap" ref={trackWrapRef}>
+        <motion.div className="projects__track"  ref={trackRef} style={{ x: trackX }}>
             {PROJECTS.map((project) => (
-              <article className="projects__card" key={project.number}>
-                <span className="projects__card-number">{project.number}</span>
+              <TiltPanel className="projects__card" key={project.number} intensity={6}>
+                {/* <div className="projects__card-image">
+                  {project.image ? (
+                    <img src={project.image} alt={project.title} />
+                  ) : (
+                    <span className="projects__card-image-placeholder">{project.number}</span>
+                  )}
+                </div> */}
                 <span className="projects__card-tag">{project.tag}</span>
                 <h3 className="projects__card-title">{project.title}</h3>
                 <p className="projects__card-desc">{project.description}</p>
@@ -106,13 +141,20 @@ export default function Projects() {
                 >
                   View repo →
                 </a>
-              </article>
+              </TiltPanel>
             ))}
           </motion.div>
         </div>
 
-        <div className="projects__scroll-hint">
-          <span>SCROLL TO EXPLORE</span>
+        <div className="projects__progress">
+          <span className="projects__progress-count">
+            <motion.span>{useTransform(activeIndex, (v) => String(Math.round(v) + 1).padStart(2, '0'))}</motion.span>
+            {' / '}
+            {String(PROJECTS.length).padStart(2, '0')}
+          </span>
+          <div className="projects__progress-track">
+            <motion.div className="projects__progress-fill" style={{ width: progressWidth }} />
+          </div>
         </div>
       </div>
     </section>

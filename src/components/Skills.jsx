@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import Grain from './Grain';
 import '../styles/Skills.css';
 
@@ -53,10 +54,38 @@ const fadeUp = {
 export default function Skills() {
   const [activeSkill, setActiveSkill] = useState(null);
 
-  return (
-    <section id="skills" className="skills">
-      <Grain />
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
 
+  const gridRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 0.5, 0.5, 0]);
+
+  return (
+    <section id="skills" className="skills" ref={sectionRef}>
+      <Grain />
+      <span className="skills__bg-number">03</span>
+      <motion.svg
+        className="skills__bg-grid"
+        style={{ rotate: gridRotate, y: gridY, opacity: gridOpacity }}
+        viewBox="0 0 400 400"
+        fill="none"
+      >
+        <circle cx="200" cy="200" r="180" stroke="var(--red)" strokeWidth="1" strokeDasharray="2 8" />
+        <circle cx="200" cy="200" r="130" stroke="rgba(242,237,230,0.3)" strokeWidth="1" />
+        <circle cx="200" cy="200" r="80" stroke="var(--red)" strokeWidth="1" strokeDasharray="6 4" />
+        <line x1="200" y1="10" x2="200" y2="390" stroke="rgba(242,237,230,0.15)" strokeWidth="1" />
+        <line x1="10" y1="200" x2="390" y2="200" stroke="rgba(242,237,230,0.15)" strokeWidth="1" />
+        <line x1="60" y1="60" x2="340" y2="340" stroke="rgba(242,237,230,0.1)" strokeWidth="1" />
+        <line x1="340" y1="60" x2="60" y2="340" stroke="rgba(242,237,230,0.1)" strokeWidth="1" />
+        <circle cx="200" cy="20" r="4" fill="var(--red)" />
+        <circle cx="380" cy="200" r="4" fill="var(--red)" />
+        <circle cx="200" cy="380" r="4" fill="var(--red)" />
+        <circle cx="20" cy="200" r="4" fill="var(--red)" />
+      </motion.svg>
       <motion.span
         className="skills__eyebrow"
         initial="hidden"
