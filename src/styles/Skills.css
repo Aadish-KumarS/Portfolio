@@ -1,0 +1,109 @@
+.skills {
+  position: relative;
+  background: var(--black);
+  color: var(--red);
+  padding: 8vw 5vw;
+  overflow: hidden;
+}
+
+.skills__eyebrow {
+  display: block;
+  font-family: var(--body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.skills__heading {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  line-height: 0.9;
+  color: var(--off-white);
+  margin: 0 0 clamp(3rem, 6vw, 5rem);
+  position: relative;
+  z-index: 2;
+}
+
+.skills__categories {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.skills__category-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.skills__category-number {
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--red);
+}
+
+.skills__category-label {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--off-white);
+  margin: 0;
+}
+
+.skills__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skills__item {
+  cursor: default;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.08);
+  padding: 0.6rem 0;
+  transition: padding-left 0.3s ease;
+}
+
+.skills__item:hover {
+  padding-left: 0.5rem;
+}
+
+.skills__item-name {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  color: var(--off-white);
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.skills__item:hover .skills__item-name {
+  color: var(--red);
+}
+
+.skills__item-note {
+  display: block;
+  overflow: hidden;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(242, 237, 230, 0.6);
+  max-width: 32ch;
+}
+
+@media (max-width: 900px) {
+  .skills__categories {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
