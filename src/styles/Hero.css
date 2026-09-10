@@ -4,6 +4,8 @@
   background: var(--black);
   color: var(--red);
   padding: 5vw 5vw 3vw;
+  padding-left: max(5vw, env(safe-area-inset-left));
+  padding-right: max(5vw, env(safe-area-inset-right));
   overflow: hidden;
   display: flex;
   align-items: stretch;
@@ -22,6 +24,8 @@
   position: relative;
   z-index: 2;
   width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: clamp(1.5rem, 3vw, 2.5rem);
@@ -35,6 +39,7 @@
   line-height: 0.8;
   letter-spacing: -0.01em;
   margin: 0;
+  text-wrap: balance;
 }
 
 .hero__lede {
@@ -73,6 +78,7 @@
   line-height: 0.92;
   color: var(--off-white);
   margin: 0;
+  text-wrap: balance;
 }
 
 .hero__body {
@@ -125,7 +131,7 @@
   margin-top: auto;
   padding-top: clamp(1.5rem, 3vw, 2.5rem);
   margin-bottom: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: max(3rem, env(safe-area-inset-bottom));
 }
 
 .hero__footer-line {
@@ -168,10 +174,12 @@
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .hero__stamp svg {
   color: var(--red);
+  flex-shrink: 0;
 }
 
 .ornament {
@@ -214,9 +222,23 @@
   transform-origin: top;
 }
 
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .hero__grid {
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+  }
+}
+
 @media (max-width: 900px) {
-  .hero__cards {
+  .hero__grid {
     grid-template-columns: 1fr;
+  }
+  .hero__body {
+    align-self: start;
+  }
+  .hero__cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -230,16 +252,67 @@
   .ornament--right {
     display: none;
   }
-  .hero__grid {
-    grid-template-columns: 1fr;
-  }
-  .hero__body {
-    align-self: start;
-  }
   .hero__footer-row {
     align-items: flex-start;
   }
   .hero__scroll-cue {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 26vw 5.5vw 8vw;
+  }
+  .hero__headline {
+    font-size: clamp(3.2rem, 18vw, 6rem);
+  }
+  .hero__subhead {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+  .hero__tagline {
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+  }
+  .hero__stamp {
+    white-space: normal;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__headline {
+    font-size: clamp(2.6rem, 17vw, 4.5rem);
+  }
+  .hero__lede,
+  .hero__body {
+    font-size: 0.85rem;
+  }
+  .hero__card-label {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 6vw 2rem;
+  }
+  .hero__headline {
+    font-size: clamp(3rem, 14vw, 6rem);
+  }
+  .hero__scroll-cue {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__inner {
+    transform: none !important;
   }
 }

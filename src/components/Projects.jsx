@@ -3,6 +3,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Grain from './Grain';
 import '../styles/Projects.css';
 import TiltPanel from './TiltPanel';
+import img2 from '../assets/img2.png';
+import img1 from '../assets/img1.png';
+import img4 from '../assets/img4.png';
+import img3 from '../assets/img3.png';
 
 // Edit this data — swap in real descriptions/links as projects finalize.
 const PROJECTS = [
@@ -12,9 +16,9 @@ const PROJECTS = [
     tag: 'AI / Data Product',
     description:
       'An AI-powered platform for career exploration, skill-gap analysis, personalised learning roadmaps, and exam preparation.',
-    stack: ['React', 'Node.js', 'FastAPI', 'MongoDB', 'LLM Integration'],
+    stack: ['MERN' , 'FastAPI', 'LLM Integration', 'Python'],
     link: 'https://github.com/Aadish-KumarS/AI-powered-Career-Intelligent-Webapp',
-    image: null,
+    image: img1,
   },
   {
     number: '02',
@@ -23,8 +27,8 @@ const PROJECTS = [
     description:
       'Full-stack applications that integrate modern LLMs such as Gemini, Mistral, and OpenChat to deliver practical, intelligent user experiences.',
     stack: ['Python', 'FastAPI', 'React', 'Gemini', 'Mistral'],
-    link: '#',
-    image: null,
+    link: 'https://github.com/Aadish-KumarS',
+    image: img3,
   },
   {
     number: '03',
@@ -33,8 +37,8 @@ const PROJECTS = [
     description:
       'Transformed Figma designs into responsive, production-ready user interfaces, with a strong focus on clean implementation, usability, and attention to detail.',
     stack: ['React', 'JavaScript', 'Figma', 'Responsive Design'],
-    link: '#',
-    image: null,
+    link: 'https://www.celebrare.in/wedding-card/all.html',
+    image: img2,
   },
   {
     number: '04',
@@ -44,7 +48,7 @@ const PROJECTS = [
       'Currently building a Model Context Protocol server to deepen my understanding of AI integrations, tool calling, and backend systems.',
     stack: ['Python', 'MCP SDK', 'Docker', 'REST APIs'],
     link: '#',
-    image: null,
+    image: img4,
   },
   
 ];
@@ -118,13 +122,13 @@ export default function Projects() {
         <motion.div className="projects__track"  ref={trackRef} style={{ x: trackX }}>
             {PROJECTS.map((project) => (
               <TiltPanel className="projects__card" key={project.number} intensity={6}>
-                {/* <div className="projects__card-image">
+                <div className="projects__card-image">
                   {project.image ? (
                     <img src={project.image} alt={project.title} />
                   ) : (
                     <span className="projects__card-image-placeholder">{project.number}</span>
                   )}
-                </div> */}
+                </div>
                 <span className="projects__card-tag">{project.tag}</span>
                 <h3 className="projects__card-title">{project.title}</h3>
                 <p className="projects__card-desc">{project.description}</p>
