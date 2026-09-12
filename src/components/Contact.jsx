@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Grain from './Grain';
 import '../styles/Contact.css';
 
-// Edit these with your real handles/URLs.
 const LINKS = [
   { label: 'Email', value: 'aadishkumarak90@gmail.com', href: 'mailto:aadishkumarak90@gmail.com' },
   { label: 'GitHub', value: '@Aadish-KumarS', href: 'https://github.com/Aadish-KumarS' },
@@ -22,8 +21,17 @@ const fadeUp = {
   }),
 };
 
+function isInAppBrowser() {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent || '';
+  return /Instagram|FBAN|FBAV|Line\/|LinkedInApp|Twitter/i.test(ua);
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [fallback, setFallback] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const fallbackTimer = useRef(null);
 
   function handleChange(e) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,11 +39,38 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const subject = encodeURIComponent(`Portfolio contact from ${form.name || 'someone'}`);
-    const body = encodeURIComponent(
-      `${form.message}\n\n— ${form.name} (${form.email})`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+    if (isInAppBrowser()) {
+      setFallback(true);
+      return;
+    }
+
+    const anchor = document.createElement('a');
+    anchor.href = mailtoUrl;
+    anchor.rel = 'noreferrer';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+
+    clearTimeout(fallbackTimer.current);
+    fallbackTimer.current = setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        setFallback(true);
+      }
+    }, 1200);
+  }
+
+  async function handleCopyEmail() {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+    }
   }
 
   return (
@@ -114,6 +149,22 @@ export default function Contact() {
           <button type="submit" className="contact__submit">
             Send message →
           </button>
+
+          {fallback && (
+            <div className="contact__fallback">
+              <p>
+                Didn't open your mail app? Email me directly at{' '}
+                <strong>{CONTACT_EMAIL}</strong>.
+              </p>
+              <button
+                type="button"
+                className="contact__copy-btn"
+                onClick={handleCopyEmail}
+              >
+                {copied ? 'Copied ✓' : 'Copy email'}
+              </button>
+            </div>
+          )}
         </motion.form>
 
         <motion.div
