@@ -21,7 +21,7 @@ export default function App() {
       <About />
       <Skills />
       <Projects />
-      <GithubActivity />
+      {/* <GithubActivity /> */}
       <Contact />
     </main>
   );
