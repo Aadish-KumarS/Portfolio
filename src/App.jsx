@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
 import LoadingScreen from './components/LoadingScreen';
+import GithubActivity from './components/GithubActivity';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
       <About />
       <Skills />
       <Projects />
+      <GithubActivity />
       <Contact />
     </main>
   );

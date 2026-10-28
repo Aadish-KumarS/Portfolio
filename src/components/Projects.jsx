@@ -6,6 +6,7 @@ import TiltPanel from './TiltPanel';
 import img2 from '../assets/img2.png';
 import img1 from '../assets/img1.png';
 import img4 from '../assets/img4.png';
+import img5 from '../assets/img5.png';
 import img3 from '../assets/img3.png';
 
 // Edit this data — swap in real descriptions/links as projects finalize.
@@ -22,13 +23,13 @@ const PROJECTS = [
   },
   {
     number: '02',
-    title: 'AI-Powered Web Applications',
-    tag: 'AI Integration / Full-Stack',
+    title: 'DevOps Copilot',
+    tag: 'AI / DevOps Automation',
     description:
-      'Full-stack applications that integrate modern LLMs such as Gemini, Mistral, and OpenChat to deliver practical, intelligent user experiences.',
-    stack: ['Python', 'FastAPI', 'React', 'Gemini', 'Mistral'],
-    link: 'https://github.com/Aadish-KumarS',
-    image: img3,
+      'An evidence-first AI incident response system that correlates production signals, identifies root causes, and recommends recovery actions through a policy-gated workflow. Features deterministic risk assessment, human approval for high-risk remediation, recovery verification, and audit-ready incident reporting.',
+    stack: ['Python', 'FastAPI', 'React', 'Vite', 'Google Gemini', 'AI Agents'],
+    link: 'https://github.com/Aadish-KumarS/devops-copilot',
+    image: img5,
   },
   {
     number: '03',
@@ -50,6 +51,16 @@ const PROJECTS = [
     link: '#',
     image: img4,
   },
+  {
+    number: '05',
+    title: 'AI-Powered Web Applications',
+    tag: 'AI Integration / Full-Stack',
+    description:
+      'Full-stack applications that integrate modern LLMs such as Gemini, Mistral, and OpenChat to deliver practical, intelligent user experiences.',
+    stack: ['Python', 'FastAPI', 'React', 'Gemini', 'Mistral'],
+    link: 'https://github.com/Aadish-KumarS',
+    image: img3,
+  }
   
 ];
 

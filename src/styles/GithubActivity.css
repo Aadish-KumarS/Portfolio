@@ -1,0 +1,114 @@
+.github {
+  position: relative;
+  background: var(--black);
+  color: var(--red);
+  padding: 8vw 5vw;
+  overflow: hidden;
+}
+
+.github__eyebrow {
+  display: block;
+  font-family: var(--body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.github__heading {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  line-height: 0.9;
+  color: var(--off-white);
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 2;
+}
+
+.github__heatmap {
+  position: relative;
+  z-index: 2;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: clamp(1rem, 2vw, 1.75rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  overflow-x: auto;
+}
+
+.github__heatmap-img {
+  width: 100%;
+  min-width: 640px;
+  filter: invert(0.05);
+}
+
+.github__feed {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+
+.github__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.08);
+  text-decoration: none;
+  color: var(--off-white);
+  transition: padding-left 0.3s ease, color 0.3s ease;
+}
+
+.github__item:hover {
+  padding-left: 0.5rem;
+  color: var(--red);
+}
+
+.github__item-text {
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  font-weight: 500;
+}
+
+.github__item-time {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+  padding-left: 1rem;
+}
+
+.github__status {
+  padding: 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.github__status a {
+  color: var(--red);
+}
+
+.github__profile-link {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--red);
+  text-decoration: none;
+}
+
+.github__profile-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+  .github {
+    padding: 20vw 6vw 12vw;
+  }
+}
